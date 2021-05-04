@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Project</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+</head>
+<body>
+<h1>New Project</h1>
+<div class="col-md-4">
+    <form th:object="${project}" th:action="@{/projects/save}" action="#" method="post">
+        <input type="text" th:field="*{PID}" class="form-control"
+               placeholder="Project ID" />
+        <br>
+        <input type="text" th:field="*{PNAME}" class="form-control"
+               placeholder="Project Name" />
+        <br>
+        <input type="text" th:field="*{MANAGER}" class="form-control"
+               placeholder="Manager Name" />
+
+<br>
+        <input type="submit" class="btn btn-success" value="Save"></input>
+    </form>
+</div>
+</body>
+</html>

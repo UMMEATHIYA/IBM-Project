@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Add User</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3> Project Management System</h3>
+    <hr>
+
+    <p class="h4 mb-4">Add User</p>
+
+    <form action="#" th:action="@{/projects/save/users}"
+          th:object="${projects}" method="POST">
+
+        <!-- Add hidden form field to handle update -->
+        <input type="text" th:field="*{PID}"
+               class="form-control mb-4 col-4" placeholder="Project ID"/>
+
+        <input type="text" th:field="*{PNAME}"
+               class="form-control mb-4 col-4" placeholder="Project Name">
+
+        <input type="text" th:field="*{MANAGER}"
+               class="form-control mb-4 col-4" placeholder="Project Manager">
+
+        <input type="text" th:field="*{users}"
+               class="form-control mb-4 col-4" placeholder="User">
+
+        <span th:each="user : ${projects.users}">
+			<br/>&nbsp;&nbsp;<span th:text="${user.NAME}" />
+		</span>
+        <form th:action="@{/project/{id}/users(id=${projects.PID})}" method="post" enctype="multipart/form-data" >
+            <select name="UID">
+                <option th:each="user : ${users}">User</option>
+            </select>
+
+        </form>
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+
+    <hr>
+    <a th:href="@{/projects/list}">Back to Homepage</a>
+
+</div>
+</body>
+
+</html>

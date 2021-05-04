@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Project Management App</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2 style = "margin-left:30%;">Welcome to Project Management App</h2>
+    <hr>
+
+    <!-- Add a button -->
+    <a th:href="@{/projects/showFormForAdd}"
+       class="btn btn-primary btn-sm mb-3">
+        Add Project
+    </a>
+
+    <a th:href="@{/projects/showFormForAddUser}"
+       class="btn btn-primary btn-sm mb-3">
+        Add User
+    </a>
+    <form th:action ="@{/projects/list}" method="get">
+        <input id="txtSearch" type="text" name="keyword">
+        <button type ="submit">Search</button>
+    </form>
+    <hr>
+    <h3>Project User Task Relationship</h3>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Project ID</th>
+            <th>PROJECT NAME</th>
+            <th>MANAGER</th>
+            <th>USER</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="tempProject : ${projects}">
+
+            <td th:text="${tempProject.PID}" />
+            <td th:text="${tempProject.PNAME}" />
+            <td th:text="${tempProject.MANAGER}" />
+
+            <td>
+				<span th:each="user,iterStat : ${tempProject.users}">
+					<!--/*@thymesVar id="NAME" type=""*/-->
+					<span th:text="${user.NAME}"/><th:block th:if="${!iterStat.last}">,</th:block>
+				</span>
+
+            <td>
+				<span th:each="task,iterStat : ${tempProject.task}">
+					<span th:text="${task.start_Date}"/><th:block th:if="${!iterStat.last}">,</th:block>
+				</span>
+
+            <td>
+				<span th:each="task,iterStat : ${tempProject.task}">
+					<span th:text="${task.end_Date}"/><th:block th:if="${!iterStat.last}">,</th:block>
+				</span>
+
+            <td>
+				<span th:each="task,iterStat : ${tempProject.task}">
+					<span th:text="${task.status}"/><th:block th:if="${!iterStat.last}">,</th:block>
+				</span>
+            <!-- Add update button/link -->
+            <td>
+
+                <a th:href="@{/projects/showFormForUpdate(PID=${tempProject.PID})}"
+                   class="btn btn-info btn-sm">
+                    Update
+                </a>
+
+                <a th:href="@{/projects/delete(PID=${tempProject.PID})}"
+                   class="btn btn-danger btn-sm">
+                    Delete
+                </a>
+            </td>
+
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>
