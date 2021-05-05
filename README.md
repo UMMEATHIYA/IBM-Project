@@ -18,4 +18,7 @@ The Project Manager Single Page Application allows you to manage projects and th
   </ul>
 </ul>
 
-Object Diagram:- 
+<b>Object Diagram</b>:- 
+
+![image](https://user-images.githubusercontent.com/43459908/117118379-53656200-adae-11eb-9f46-bd130b57e625.png)
+
