@@ -1,0 +1,86 @@
+CREATE TABLE IF NOT EXISTS PROJECT (
+     PID INT NOT NULL AUTO_INCREMENT,
+     PNAME VARCHAR(40),
+     MANAGERNAME VARCHAR(40),
+     PRIMARY KEY(PID))
+     ENGINE = InnoDB;
+
+----------------------------------------------------------------
+
+TRUNCATE TABLE PROJECT;
+----------------------------------------------------------------
+
+INSERT INTO PROJECT(PID,PNAME,MANAGERNAME) VALUES (1,'PLANT DISEASE PREDICTION','SANTHOSH KUMAR');
+
+INSERT INTO PROJECT(PID,PNAME,MANAGERNAME) VALUES (2,'EMAIL SPAM FILTER','NILAY DAS');
+
+INSERT INTO PROJECT(PID,PNAME,MANAGERNAME) VALUES (3,'PROJECT MANAGEMENT','ARUN S');
+-------------------------------------------------------------------------------------------------------
++-----+--------------------------+----------------+
+| PID | PNAME                    | MANAGERNAME    |
++-----+--------------------------+----------------+
+|   1 | PLANT DISEASE PREDICTION | SANTHOSH KUMAR |
+|   2 | EMAIL SPAM FILTER        | NILAY DAS      |
+|   3 | PROJECT MANAGEMENT       | ARUN S         |
++-----+--------------------------+----------------+
+3 rows in set (0.00 sec)
+--------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS USER (
+	UID INT NOT NULL AUTO_INCREMENT,
+	UNAME VARCHAR(40),
+	DOMAIN VARCHAR(40),
+	PROJECTID INT,
+	PRIMARY KEY(UID))
+	ENGINE = InnoDB;
+----------------------------------------------------------------------
+TRUNCATE TABLE USER;
+----------------------------------------------------------------------
+INSERT INTO USER(UID,UNAME,DOMAIN,PROJECTID) VALUES(1001, 'JOHN DOE','DEVELOPMENT',1);
+
+INSERT INTO USER(UID,UNAME,DOMAIN,PROJECTID) VALUES(1002, 'MARY PUBLIC','MACHINE LEARNING',2);
+
+INSERT INTO USER(UID,UNAME,DOMAIN,PROJECTID) VALUES(1004, 'SAM CURRAN','DATABASE ADMINISTRATOR',3);
+
+
+------------------------------------------------------------------------------------------------------------
+
++------+-----------------+------------------------+-----------+
+| UID  | UNAME           | DOMAIN                 | PROJECTID |
++------+-----------------+------------------------+-----------+
+| 1001 | JOHN DOE        | DEVELOPMENT            |         1 |
+| 1002 | MARY PUBLIC     | MACHINE LEARNING       |         2 |
+| 1003 | SUSAN DUCK      | MACHINE LEARNING       |         2 |
+| 1004 | SAM CURRAN      | DATABASE ADMINISTRATOR |         3 |
+| 1005 | PATRICK CUMMINS | TESTING                |         3 |
++------+-----------------+------------------------+-----------+
+5 rows in set (0.00 sec)
+-------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS TASK (
+	TID INT NOT NULL,
+	START_DATE VARCHAR(15),
+	END_DATE VARCHAR(15),
+	STATUS BOOLEAN,
+	USERID INT)
+	ENGINE = InnoDB;
+-------------------------------------------------------------------------
+
+TRUNCATE TABLE TASK;
+
+---------------------------------------------------------------------
+INSERT INTO TASK(TID,START_DATE,END_DATE ,STATUS,USERID) VALUES(9001,'20/03/2020','07/09/2020',FALSE,1001);
+
+INSERT INTO TASK(TID,START_DATE,END_DATE,STATUS,USERID) VALUES(9002,'03/02/2019','10/02/2020',FALSE,1002);
+
+ INSERT INTO TASK(TID,START_DATE,END_DATE,STATUS,USERID) VALUES(9003,'10/02/2020','10/10/2020',true,1003);
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
++------+------------+------------+----------------+------------------------------------+--------+-----------+--------+
+| TID  | START_DATE | END_DATE   | OWNER          | TASK                               | STATUS | PROJECTID | USERID |
++------+------------+------------+----------------+------------------------------------+--------+-----------+--------+
+| 9001 | 20/03/2020 | 07/09/2020 | SANTHOSH KUMAR | CLEANING , BUILDING DATASET        |      0 |         1 |   1001 |
+| 9002 | 03/02/2019 | 10/02/2020 | NILAY DAS      | DATABASE INTEGRATION, UNIT TESTING |      0 |         2 |   1004 |
++------+------------+------------+----------------+------------------------------------+--------+-----------+--------+
+2 rows in set (0.00 sec)
